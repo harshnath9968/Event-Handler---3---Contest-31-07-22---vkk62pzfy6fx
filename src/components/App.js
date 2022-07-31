@@ -1,25 +1,22 @@
-import React from 'react'
-const App = () => {
+import React, { createContext, useState } from "react";
 
-  const handleInput = (event) =>{
-   console.log(event.target.value)
-  }
 
-  // do not change id of input elements
-  return (
-    <div id="main">
-      <label htmlFor='text-input'>Text Input:- </label>
-      <input id="text-input" type={'text'} onChange={(event)=>{handleInput(event)}} />
 
-      <br/>
-      <br/>
 
-      <label htmlFor='num-input'>Number input</label>
-      <input id="num-input"  type={'number'} onChange={(event)=>{handleInput(event)}}/>
-      <br/>
-    </div>
-  )
+
+const counterContext = createContext()
+
+
+const CounterStateContext = (props) => {
+const [count, setCount] = useState(0);
+    return (
+        <div id="counter-context">
+            <counterContext.Provider value={{ count, setCount }}>
+                {props.children}
+            </counterContext.Provider >
+        </div>
+
+    )
 }
 
-
-export default App;
+export { counterContext, CounterStateContext }
